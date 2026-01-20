@@ -7,6 +7,9 @@
 
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
 
+<!-- Prism.js CSS -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
+
 <style>
 :root[data-theme="dark"]{
   --primary:#ff4757;
@@ -80,7 +83,6 @@ body::after{
   66%{transform:translate(-20px,20px) rotate(-5deg)}
 }
 
-/* LOADING SPINNER */
 .loading-overlay{
   position:fixed;
   inset:0;
@@ -127,7 +129,6 @@ body::after{
   50%{opacity:0.5}
 }
 
-/* HEADER */
 header{
   background:var(--search-bg);
   backdrop-filter:blur(20px);
@@ -199,7 +200,6 @@ header{
   box-shadow:0 6px 20px rgba(255,71,87,0.4);
 }
 
-/* SEARCH BAR */
 .search-container{
   max-width:1400px;
   margin:0 auto;
@@ -233,9 +233,7 @@ header{
   box-shadow:0 0 0 4px rgba(255,71,87,0.1);
 }
 
-.search-input::placeholder{
-  color:var(--muted);
-}
+.search-input::placeholder{color:var(--muted)}
 
 .search-icon{
   position:absolute;
@@ -264,9 +262,7 @@ header{
   transition:all 0.3s ease;
 }
 
-.clear-search:hover{
-  color:var(--primary);
-}
+.clear-search:hover{color:var(--primary)}
 
 .search-results-info{
   text-align:center;
@@ -275,7 +271,6 @@ header{
   font-size:0.9rem;
 }
 
-/* CONTAINER */
 .container{
   max-width:1400px;
   margin:0 auto;
@@ -348,9 +343,7 @@ header{
   border-color:rgba(255,71,87,0.3);
 }
 
-.card.hidden{
-  display:none;
-}
+.card.hidden{display:none}
 
 .img-box{
   height:200px;
@@ -367,9 +360,7 @@ header{
   transition:opacity 0.3s;
 }
 
-.card:hover .img-box::after{
-  opacity:1;
-}
+.card:hover .img-box::after{opacity:1}
 
 .img-box img{
   width:100%;
@@ -378,9 +369,7 @@ header{
   transition:transform 0.5s ease;
 }
 
-.card:hover .img-box img{
-  transform:scale(1.1);
-}
+.card:hover .img-box img{transform:scale(1.1)}
 
 .price{
   position:absolute;
@@ -415,9 +404,7 @@ header{
 .st-few{background:rgba(251,191,36,0.9);color:#000}
 .st-sold{background:rgba(239,68,68,0.9);color:#fff}
 
-.details{
-  padding:20px;
-}
+.details{padding:20px}
 
 .details h3{
   font-size:1.2rem;
@@ -444,7 +431,7 @@ header{
   color:var(--text);
 }
 
-/* CHATBOT STYLES - RED & BLACK THEME */
+/* CHATBOT */
 .chatbot-button{
   position:fixed;
   bottom:30px;
@@ -490,9 +477,7 @@ header{
   overflow:hidden;
 }
 
-.chatbot-container.active{
-  display:flex;
-}
+.chatbot-container.active{display:flex}
 
 .chatbot-header{
   background:linear-gradient(135deg,#ff4757,#e63946);
@@ -549,9 +534,7 @@ header{
   to{opacity:1;transform:translateY(0)}
 }
 
-.message.user{
-  flex-direction:row-reverse;
-}
+.message.user{flex-direction:row-reverse}
 
 .message-avatar{
   width:35px;
@@ -592,7 +575,76 @@ header{
   box-shadow:0 2px 8px rgba(255,71,87,0.3);
 }
 
-/* CHAT TABLE STYLES */
+/* CODE BLOCK WRAPPER */
+.code-block-wrapper{
+  position:relative;
+  margin:10px 0;
+  border-radius:8px;
+  overflow:hidden;
+  background:#1d1f21;
+  border:1px solid #2a2a2a;
+}
+
+.code-block-header{
+  background:#2a2a2a;
+  padding:8px 12px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  border-bottom:1px solid #3a3a3a;
+}
+
+.code-language-label{
+  font-size:0.75rem;
+  color:#6a6a6a;
+  text-transform:uppercase;
+  letter-spacing:0.5px;
+  font-weight:600;
+}
+
+.copy-code-btn{
+  background:transparent;
+  color:#6a6a6a;
+  border:none;
+  padding:6px;
+  border-radius:4px;
+  cursor:pointer;
+  display:flex;
+  align-items:center;
+  gap:6px;
+  transition:all 0.3s ease;
+}
+
+.copy-code-btn:hover{
+  background:rgba(255,71,87,0.1);
+  color:#ff4757;
+}
+
+.copy-code-btn svg{
+  width:16px;
+  height:16px;
+  fill:currentColor;
+}
+
+.copy-code-btn.copied{
+  color:#22c55e;
+}
+
+.code-block-wrapper pre[class*="language-"]{
+  margin:0 !important;
+  padding:1em !important;
+  background:#1d1f21 !important;
+  border-radius:0 !important;
+}
+
+.code-block-wrapper code[class*="language-"]{
+  background:transparent !important;
+  font-family:'Consolas','Monaco','Courier New',monospace !important;
+  font-size:0.85rem !important;
+  line-height:1.5 !important;
+}
+
+/* CHAT TABLE */
 .chat-table{
   width:100%;
   border-collapse:collapse;
@@ -604,9 +656,7 @@ header{
   border:1px solid #2a2a2a;
 }
 
-.chat-table thead{
-  background:#ff4757;
-}
+.chat-table thead{background:#ff4757}
 
 .chat-table th{
   padding:8px 10px;
@@ -622,28 +672,12 @@ header{
   color:#f1f5f9;
 }
 
-.chat-table tr:last-child td{
-  border-bottom:none;
-}
+.chat-table tr:last-child td{border-bottom:none}
+.chat-table tbody tr:hover{background:#1a1a1a}
 
-.chat-table tbody tr:hover{
-  background:#1a1a1a;
-}
-
-.status-available{
-  color:#22c55e;
-  font-weight:600;
-}
-
-.status-few{
-  color:#fbbf24;
-  font-weight:600;
-}
-
-.status-sold{
-  color:#ef4444;
-  font-weight:600;
-}
+.status-available{color:#22c55e;font-weight:600}
+.status-few{color:#fbbf24;font-weight:600}
+.status-sold{color:#ef4444;font-weight:600}
 
 .chatbot-input-area{
   padding:20px;
@@ -671,9 +705,7 @@ header{
   box-shadow:0 0 0 2px rgba(255,71,87,0.2);
 }
 
-.chatbot-input::placeholder{
-  color:#6a6a6a;
-}
+.chatbot-input::placeholder{color:#6a6a6a}
 
 .chatbot-send{
   background:linear-gradient(135deg,#ff4757,#e63946);
@@ -714,13 +746,8 @@ header{
   animation:typing 1.4s infinite;
 }
 
-.typing-indicator span:nth-child(2){
-  animation-delay:0.2s;
-}
-
-.typing-indicator span:nth-child(3){
-  animation-delay:0.4s;
-}
+.typing-indicator span:nth-child(2){animation-delay:0.2s}
+.typing-indicator span:nth-child(3){animation-delay:0.4s}
 
 @keyframes typing{
   0%,60%,100%{opacity:0.3}
@@ -736,10 +763,7 @@ header{
 
 @media(max-width:768px){
   .hero-section h1{font-size:2rem}
-  .grid{
-    grid-template-columns:repeat(2,1fr);
-    gap:15px;
-  }
+  .grid{grid-template-columns:repeat(2,1fr);gap:15px}
   .cat-title{font-size:1.5rem}
   .card{border-radius:18px}
   .img-box{height:160px}
@@ -748,23 +772,9 @@ header{
   .details p{font-size:0.85rem}
   .price{font-size:0.85rem;padding:6px 12px}
   .status-badge{font-size:0.65rem;padding:5px 10px}
-  
-  .chatbot-container{
-    width:calc(100% - 20px);
-    right:10px;
-    left:10px;
-    bottom:90px;
-    height:500px;
-  }
-  
-  .chatbot-button{
-    right:20px;
-    bottom:20px;
-  }
-  
-  .search-wrapper{
-    max-width:100%;
-  }
+  .chatbot-container{width:calc(100% - 20px);right:10px;left:10px;bottom:90px;height:500px}
+  .chatbot-button{right:20px;bottom:20px}
+  .search-wrapper{max-width:100%}
 }
 
 @media(max-width:480px){
@@ -789,7 +799,6 @@ header{
 
 <body>
 
-<!-- LOADING OVERLAY -->
 <div class="loading-overlay" id="loadingOverlay">
   <div class="spinner"></div>
   <div class="loading-text">Loading SmartCafe...</div>
@@ -810,7 +819,6 @@ header{
   </div>
 </header>
 
-<!-- SEARCH BAR -->
 <div class="search-container">
   <div class="search-wrapper">
     <div class="search-icon">
@@ -834,14 +842,12 @@ header{
   </div>
 </div>
 
-<!-- CHATBOT BUTTON -->
 <button class="chatbot-button" onclick="toggleChatbot()">
   <svg viewBox="0 0 24 24">
     <path d="M12 2C6.48 2 2 6.48 2 12c0 1.54.36 3 .97 4.29L2 22l5.71-.97C9 21.64 10.46 22 12 22c5.52 0 10-4.48 10-10S17.52 2 12 2zm0 18c-1.38 0-2.68-.29-3.86-.81l-.28-.13-2.76.47.47-2.76-.13-.28C4.29 14.68 4 13.38 4 12c0-4.41 3.59-8 8-8s8 3.59 8 8-3.59 8-8 8z"/>
   </svg>
 </button>
 
-<!-- CHATBOT CONTAINER -->
 <div class="chatbot-container" id="chatbotContainer">
   <div class="chatbot-header">
     <h3>SmartCafe Assistant 🍽️</h3>
@@ -851,12 +857,12 @@ header{
     <div class="message bot">
       <div class="message-avatar">🤖</div>
       <div class="message-content">
-        Hi! I'm your SmartCafe assistant. Ask me about our menu items, prices, availability, or categories! Try: "Show me all snacks" or "What's available under ₹100?"
+        Hi! I'm your SmartCafe assistant. Ask me about our menu items, prices, availability, or ask coding questions with syntax highlighting!
       </div>
     </div>
   </div>
   <div class="chatbot-input-area">
-    <input type="text" class="chatbot-input" id="chatInput" placeholder="Ask about our menu..." onkeypress="handleChatKeypress(event)">
+    <input type="text" class="chatbot-input" id="chatInput" placeholder="Ask about menu or code..." onkeypress="handleChatKeypress(event)">
     <button class="chatbot-send" onclick="sendMessage()">
       <svg viewBox="0 0 24 24">
         <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/>
@@ -865,16 +871,25 @@ header{
   </div>
 </div>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-javascript.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-java.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-css.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-markup.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-php.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-sql.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-json.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js"></script>
+
 <script>
-// CONFIGURATION
 const API_URL="https://script.google.com/macros/s/AKfycbzJCwL-TlsX70KAnSLvj0q1gasdDYLqXqDY_lQ8Wg7RE3uWFrLq-hRdPfIe5coqKL-b/exec";
-const CEREBRAS_API_KEY="csk-hf3f2yv2dve2rhn4pm863jfxcf3y3wy2pk3dxfc9c463mkfp";
+const CEREBRAS_API_KEY="csk-mrnne8wxj3hmxf5yfctd3j3rc3km385vxkt3jrehp6ctdkw8";
 const CEREBRAS_API_URL="https://api.cerebras.ai/v1/chat/completions";
 
 let menuData=[];
 let currentTheme='dark';
 
-// THEME FUNCTIONS
 function initTheme(){
   const savedTheme=localStorage.getItem('smartcafe-theme')||'dark';
   currentTheme=savedTheme;
@@ -893,14 +908,12 @@ function updateThemeIcon(){
   document.getElementById('themeIcon').textContent=currentTheme==='dark'?'🌙':'☀️';
 }
 
-// LOGOUT FUNCTION
 function handleLogout(){
   if(confirm('Are you sure you want to logout?')){
     window.location.href='login.html';
   }
 }
 
-// SEARCH FUNCTIONS
 function searchMenu(){
   const searchTerm=document.getElementById('searchInput').value.toLowerCase().trim();
   const cards=document.querySelectorAll('.card');
@@ -974,12 +987,9 @@ function showNoResults(){
 
 function hideNoResults(){
   const noResults=document.getElementById('noResultsMsg');
-  if(noResults){
-    noResults.remove();
-  }
+  if(noResults)noResults.remove();
 }
 
-// LOADING FUNCTIONS
 function showLoading(){
   document.getElementById('loadingOverlay').classList.remove('hidden');
 }
@@ -990,7 +1000,6 @@ function hideLoading(){
   },800);
 }
 
-// FETCH MENU
 async function fetchMenu(){
   try{
     const res=await fetch(API_URL+'?action=getMenu&timestamp='+new Date().getTime());
@@ -1005,7 +1014,6 @@ async function fetchMenu(){
   }
 }
 
-// RENDER MENU
 function render(){
   const root=document.getElementById('root');
   root.innerHTML="";
@@ -1023,7 +1031,7 @@ function render(){
     
     items.forEach(item=>{
       let badgeClass="st-available",badgeText="Available";
-      const itemStatus = String(item.status).toLowerCase().trim();
+      const itemStatus=String(item.status).toLowerCase().trim();
       
       if(itemStatus==="few"){
         badgeClass="st-few";
@@ -1055,16 +1063,13 @@ function render(){
   searchMenu();
 }
 
-// CHATBOT FUNCTIONS
 function toggleChatbot(){
   const container=document.getElementById('chatbotContainer');
   container.classList.toggle('active');
 }
 
 function handleChatKeypress(event){
-  if(event.key==='Enter'){
-    sendMessage();
-  }
+  if(event.key==='Enter')sendMessage();
 }
 
 async function sendMessage(){
@@ -1136,33 +1141,30 @@ function showTypingIndicator(){
 
 function removeTypingIndicator(){
   const indicator=document.getElementById('typingIndicator');
-  if(indicator){
-    indicator.remove();
-  }
+  if(indicator)indicator.remove();
 }
 
 async function getCerebrasResponse(userMessage){
   const menuContext=createMenuContext();
   
-  const systemPrompt=`You are a helpful restaurant menu assistant for SmartCafe. You have access to the current menu data.
+  const systemPrompt=`You are a helpful restaurant menu assistant for SmartCafe.
 
-IMPORTANT INSTRUCTIONS:
-1. When showing multiple menu items, ALWAYS format them as an HTML table.
-2. For lists of items with prices and status, use this table format:
+**For CODING Questions:**
+1. ALWAYS wrap code in markdown code blocks: \`\`\`language\\ncode\\n\`\`\`
+2. Supported languages: python, javascript, java, html, css, php, sql, json, bash
+3. Keep code properly formatted
+
+**For MENU Questions:**
+1. Show multiple items in HTML tables:
    <table class="chat-table">
      <thead><tr><th>Item</th><th>Price</th><th>Status</th></tr></thead>
      <tbody>
-       <tr><td>Item Name</td><td>₹Price</td><td class="status-available">Available</td></tr>
+       <tr><td>Name</td><td>₹Price</td><td class="status-available">Available</td></tr>
      </tbody>
    </table>
-3. Use these status classes: "status-available", "status-few", "status-sold"
-4. For single items or short responses, use regular text.
-5. Always use ₹ symbol for prices.
 
-CURRENT MENU DATA:
-${menuContext}
-
-Answer questions about menu items, prices, availability, categories, and recommendations. Be friendly and concise.`;
+MENU DATA:
+${menuContext}`;
 
   try{
     const response=await fetch(CEREBRAS_API_URL,{
@@ -1177,17 +1179,83 @@ Answer questions about menu items, prices, availability, categories, and recomme
           {role:'system',content:systemPrompt},
           {role:'user',content:userMessage}
         ],
-        max_tokens:800,
+        max_tokens:1500,
         temperature:0.7
       })
     });
     
     const data=await response.json();
-    return data.choices[0].message.content;
+    let content=data.choices[0].message.content;
+    
+    content=convertMarkdownCodeToHTML(content);
+    
+    return content;
   }catch(error){
     console.error('Cerebras API error:',error);
     throw error;
   }
+}
+
+function convertMarkdownCodeToHTML(text){
+  const codeBlockRegex=/```(\w+)?\s*\n([\s\S]*?)```/g;
+  
+  return text.replace(codeBlockRegex,(match,language,code)=>{
+    const lang=language||'plaintext';
+    const escapedCode=escapeHtml(code.trim());
+    const codeId='code_'+Math.random().toString(36).substr(2,9);
+    
+    setTimeout(()=>{
+      const codeElement=document.getElementById(codeId);
+      if(codeElement){
+        Prism.highlightElement(codeElement);
+      }
+    },100);
+    
+    return `
+<div class="code-block-wrapper">
+  <div class="code-block-header">
+    <span class="code-language-label">${lang}</span>
+    <button class="copy-code-btn" onclick="copyCodeToClipboard('${codeId}', event)">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+      </svg>
+    </button>
+  </div>
+  <pre><code id="${codeId}" class="language-${lang}">${escapedCode}</code></pre>
+</div>`;
+  });
+}
+
+function copyCodeToClipboard(codeId, event){
+  const codeElement=document.getElementById(codeId);
+  if(!codeElement)return;
+  
+  const code=codeElement.textContent;
+  
+  navigator.clipboard.writeText(code).then(()=>{
+    const btn=event.currentTarget;
+    const originalHTML=btn.innerHTML;
+    
+    btn.innerHTML=`
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="20 6 9 17 4 12"></polyline>
+      </svg>`;
+    btn.classList.add('copied');
+    
+    setTimeout(()=>{
+      btn.innerHTML=originalHTML;
+      btn.classList.remove('copied');
+    },2000);
+  }).catch(err=>{
+    console.error('Failed to copy:',err);
+  });
+}
+
+function escapeHtml(text){
+  const div=document.createElement('div');
+  div.textContent=text;
+  return div.innerHTML;
 }
 
 function createMenuContext(){
@@ -1208,7 +1276,6 @@ function createMenuContext(){
   return context;
 }
 
-// INITIALIZE
 initTheme();
 showLoading();
 fetchMenu();
@@ -1216,4 +1283,3 @@ fetchMenu();
 
 </body>
 </html>
-
