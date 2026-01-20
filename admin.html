@@ -605,6 +605,16 @@
         <label>Price (₹) *</label>
         <input type="number" id="editPrice" step="0.01" required />
 
+        <label>Category *</label>
+        <select id="editCategory" required>
+          <option value="">Select Category</option>
+          <option value="Snacks">Snacks</option>
+          <option value="Breakfast">Breakfast</option>
+          <option value="Rice Varieties">Rice Varieties</option>
+          <option value="Chinese">Chinese</option>
+          <option value="Sides / Gravy">Sides / Gravy</option>
+        </select>
+
         <label>Status</label>
         <select id="editStatus">
           <option value="available">Available</option>
@@ -819,10 +829,11 @@
         editImageBase64 = "";
         const item = menuData.find((i) => String(i.id) === String(id));
         if (item) {
-          document.getElementById("editName").value = item.name;
+          document.getElementById("editName").value = item.name || "";
           document.getElementById("editDesc").value = item.description || "";
-          document.getElementById("editPrice").value = item.price;
-          document.getElementById("editStatus").value = item.status;
+          document.getElementById("editPrice").value = item.price || "";
+          document.getElementById("editCategory").value = item.category || "";
+          document.getElementById("editStatus").value = item.status || "available";
           document.getElementById("editImage").value = "";
           document.getElementById("editError").style.display = "none";
 
@@ -855,9 +866,11 @@
         const name = document.getElementById("editName").value.trim();
         const desc = document.getElementById("editDesc").value.trim();
         const price = document.getElementById("editPrice").value;
+        const category = document.getElementById("editCategory").value;
         const status = document.getElementById("editStatus").value;
 
-        if (!name || !price || parseFloat(price) <= 0) {
+        if (!name || !price || !category || parseFloat(price) <= 0) {
+          document.getElementById("editError").textContent = "Please fill all required fields";
           document.getElementById("editError").style.display = "block";
           return;
         }
@@ -866,44 +879,54 @@
         editBtn.disabled = true;
         editBtn.innerHTML = '<span class="loading-spinner"></span>Updating...';
 
-        const item = menuData.find((i) => String(i.id) === String(editId));
-        if (item) {
-          const updated = {
-            ...item,
-            name: name,
-            description: desc,
-            price: parseFloat(price),
-            status: status.toLowerCase(),
-          };
+        const originalItem = menuData.find((i) => String(i.id) === String(editId));
+        
+        if (!originalItem) {
+          document.getElementById("editError").textContent = "Item not found";
+          document.getElementById("editError").style.display = "block";
+          editBtn.disabled = false;
+          editBtn.innerHTML = "Update";
+          return;
+        }
 
-          // Update image only if new one is uploaded
-          if (editImageBase64) {
-            updated.image = editImageBase64;
-          }
+        // Build updated item - preserve ALL original fields
+        const updated = {
+          id: originalItem.id,
+          name: name,
+          description: desc,
+          price: parseFloat(price),
+          category: category,
+          status: status,
+          image: editImageBase64 || originalItem.image || "https://via.placeholder.com/300?text=Food"
+        };
 
-          try {
-            const res = await fetch(MENU_API_URL, {
-              method: "POST",
-              body: JSON.stringify({ action: "update", item: updated }),
-            });
-            const result = await res.json();
-            if (result.status === "success") {
-              closeModal("editModal");
-              await fetchMenu();
-            } else {
-              document.getElementById("editError").textContent =
-                result.message || "Failed to update";
-              document.getElementById("editError").style.display = "block";
-            }
-          } catch (e) {
-            console.error(e);
+        console.log("Updating item:", updated);
+
+        try {
+          const res = await fetch(MENU_API_URL, {
+            method: "POST",
+            body: JSON.stringify({ action: "update", item: updated }),
+          });
+          
+          const result = await res.json();
+          console.log("Update result:", result);
+          
+          if (result.status === "success") {
+            closeModal("editModal");
+            await fetchMenu();
+          } else {
             document.getElementById("editError").textContent =
-              "Network error. Please try again.";
+              result.message || "Failed to update item";
             document.getElementById("editError").style.display = "block";
-          } finally {
-            editBtn.disabled = false;
-            editBtn.innerHTML = "Update";
           }
+        } catch (e) {
+          console.error("Update error:", e);
+          document.getElementById("editError").textContent =
+            "Network error. Please try again.";
+          document.getElementById("editError").style.display = "block";
+        } finally {
+          editBtn.disabled = false;
+          editBtn.innerHTML = "Update";
         }
       }
 
@@ -916,6 +939,7 @@
           });
           const result = await res.json();
           if (result.status === "success") await fetchMenu();
+          else alert(result.message || "Failed to delete");
         } catch (e) {
           console.error(e);
           alert("Failed to delete item");
@@ -928,4 +952,3 @@
     </script>
   </body>
 </html>
-
